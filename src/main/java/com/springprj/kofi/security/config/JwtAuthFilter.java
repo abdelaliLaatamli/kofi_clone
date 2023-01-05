@@ -2,6 +2,7 @@ package com.springprj.kofi.security.config;
 
 import com.springprj.kofi.security.services.JwtService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,8 +28,10 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class JwtAuthFilter extends OncePerRequestFilter {
 
+    @Autowired
     private JwtService jwtService;
 
+    @Autowired
     private UserDetailsService userDetailsService;
     @Override
     protected void doFilterInternal(
@@ -50,6 +53,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
         // extract user Email
         userEmail = jwtService.extractUsername(jwt);
+
 
         if( userEmail!= null && SecurityContextHolder.getContext().getAuthentication() == null ){
             UserDetails user = this.userDetailsService.loadUserByUsername(userEmail);//.loaduserByUsername(userEmail);
