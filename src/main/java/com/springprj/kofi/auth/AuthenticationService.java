@@ -7,6 +7,7 @@ import com.springprj.kofi.security.services.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,11 @@ public class AuthenticationService {
 
     private final AuthenticationManager authenticationManager;
     public AuthenticationResponse register(RegisterRequest request) {
+
+        User UserR = userRepository.findByEmail(request.getEmail()).orElse(null);
+
+        if(UserR != null) throw new RuntimeException("User already exist");
+
         User user = User.builder()
                 .firstName(request.getFirstname())
                 .lastName(request.getLastname())
@@ -36,12 +42,15 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) throws Exception {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.getEmail() ,
-                        request.getPassword()
-                )
+
+        Authentication authentication = new UsernamePasswordAuthenticationToken(
+                request.getEmail() ,
+                request.getPassword()
         );
+
+        authenticationManager.authenticate( authentication );
+
+
         User user = userRepository.findByEmail(request.getEmail()).orElseThrow(() -> new Exception("User not Found"));
         String jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
