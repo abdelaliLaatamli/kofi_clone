@@ -1,10 +1,19 @@
 package com.springprj.kofi.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @MappedSuperclass
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Dest {
@@ -19,8 +28,11 @@ public abstract class Dest {
     private String details;
 
 
-    @OneToMany( targetEntity=Comment.class, mappedBy="dest" )
-    private List<Comment> commands = new ArrayList<>();
+    //@OneToMany(mappedBy="Dest" )
+    //private List<Comment> commands;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Comment> commants;
 
 }
 

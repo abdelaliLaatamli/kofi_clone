@@ -6,21 +6,26 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+import java.util.Set;
+
+
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Entity
-public class Comment {
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column
-    private String comment;
+    private String name;
 
-    // @ManyToOne
-    // @JoinColumn(name="dest_id", nullable=false)
-    // private Dest Dest;
+
+    @OneToMany(mappedBy="category")
+    private Set<Profile> profiles;
+
+
 }

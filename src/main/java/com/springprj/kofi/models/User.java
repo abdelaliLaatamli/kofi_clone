@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table( name="users")
@@ -76,4 +77,7 @@ public class User implements UserDetails {
     public String getPassword(){
         return password;
     }
+
+    @ManyToMany(mappedBy = "follows")
+    Set<Profile> likedCourses;
 }
