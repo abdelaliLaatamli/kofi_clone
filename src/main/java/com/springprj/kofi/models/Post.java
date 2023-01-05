@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Data @Builder @NoArgsConstructor @AllArgsConstructor
+@Data @Builder
 @Entity
 public class Post extends Dest {
 

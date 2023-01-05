@@ -11,9 +11,6 @@ import java.util.List;
 
 
 @Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @MappedSuperclass
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Dest {
@@ -26,10 +23,6 @@ public abstract class Dest {
 
     @Column(columnDefinition = "text")
     private String details;
-
-
-    //@OneToMany(mappedBy="Dest" )
-    //private List<Comment> commands;
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<Comment> commants;
