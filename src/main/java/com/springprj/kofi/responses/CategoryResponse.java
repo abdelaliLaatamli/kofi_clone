@@ -14,4 +14,6 @@ import javax.persistence.Column;
 public class CategoryResponse {
     private Long id;
     private String name;
+
+    private String icon;
 }

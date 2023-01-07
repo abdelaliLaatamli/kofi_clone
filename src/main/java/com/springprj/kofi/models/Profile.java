@@ -25,6 +25,8 @@ public class Profile {
     private String description;
 
 
+    @Column(nullable = true)
+    private String avatar;
 
     @ManyToMany
     @JoinTable(

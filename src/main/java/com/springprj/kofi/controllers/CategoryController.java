@@ -26,7 +26,12 @@ public class CategoryController {
 
         List<CategoryResponse> getCategoriesResponse = new ArrayList<CategoryResponse>();
         for( Category i : getCategories ){
-            getCategoriesResponse.add( CategoryResponse.builder().id(i.getId()).name(i.getName()).build() );
+            getCategoriesResponse.add(
+                    CategoryResponse.builder()
+                            .id(i.getId())
+                            .name(i.getName())
+                            .icon(i.getIcon())
+                            .build() );
         }
 
         return ResponseEntity.ok(getCategoriesResponse);

@@ -23,6 +23,9 @@ public class Category {
     @Column
     private String name;
 
+    @Column
+    private String icon;
+
 
     @OneToMany(mappedBy="category")
     private Set<Profile> profiles;

@@ -1,11 +1,13 @@
 package com.springprj.kofi.controllers;
 
+import com.springprj.kofi.models.Profile;
+import com.springprj.kofi.responses.ProfileResponse;
+import com.springprj.kofi.services.ProfileService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @AllArgsConstructor
@@ -13,15 +15,24 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProfileController {
 
 
+    private final ProfileService profileService;
     @GetMapping
-    private String allProfiles(){
-        return "aaaa";
+    private ResponseEntity< List<ProfileResponse>> allProfiles(){
+        List<ProfileResponse> profileList = profileService.getAllProfiles();
+        return ResponseEntity.ok(profileList);
     }
 
 
-    @GetMapping("/category/{categoryid}")
-    private String categoryProfiles(){
-        return "aaaa";
+    @GetMapping("/category/{categoryId}")
+    private ResponseEntity<List<ProfileResponse>> categoryProfiles(@PathVariable Long categoryId ){
+        List<ProfileResponse> profileList = profileService.getAllProfileByCategory(categoryId);
+        return ResponseEntity.ok( profileList );
+    }
+
+    @GetMapping("/{profileId}")
+    private ResponseEntity<ProfileResponse> getProfileDetails(@PathVariable Long profileId){
+        ProfileResponse profile= profileService.getProfileDetails(profileId);
+        return ResponseEntity.ok(profile);
     }
 
 }
