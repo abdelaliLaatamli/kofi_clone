@@ -20,7 +20,7 @@ public abstract class Dest {
     private String details;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Comment> commants;
+    private List<Comment> comments;
 
 }
 
