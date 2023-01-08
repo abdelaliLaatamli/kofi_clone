@@ -1,4 +1,4 @@
-package com.springprj.kofi.Repositories;
+package com.springprj.kofi.repositories;
 
 import com.springprj.kofi.models.Category;
 import org.springframework.data.jpa.repository.JpaRepository;

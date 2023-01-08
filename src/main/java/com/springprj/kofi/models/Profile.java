@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -38,5 +39,12 @@ public class Profile {
     @ManyToOne
     @JoinColumn(name="category", nullable=false)
     private Category category;
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "profile")
+    private List<Post> posts;
+
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "profile")
+    private List<Gallery> galleries;
 
 }

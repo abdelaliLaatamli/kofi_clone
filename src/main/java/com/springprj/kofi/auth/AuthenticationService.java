@@ -1,6 +1,6 @@
 package com.springprj.kofi.auth;
 
-import com.springprj.kofi.Repositories.UserRepository;
+import com.springprj.kofi.repositories.UserRepository;
 import com.springprj.kofi.models.Role;
 import com.springprj.kofi.models.User;
 import com.springprj.kofi.security.services.JwtService;

@@ -1,6 +1,6 @@
 package com.springprj.kofi.services;
 
-import com.springprj.kofi.Repositories.CategoryRepository;
+import com.springprj.kofi.repositories.CategoryRepository;
 import com.springprj.kofi.models.Category;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

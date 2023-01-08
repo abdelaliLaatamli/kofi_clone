@@ -1,6 +1,6 @@
 package com.springprj.kofi.services;
 
-import com.springprj.kofi.Repositories.ProfileRepository;
+import com.springprj.kofi.repositories.ProfileRepository;
 import com.springprj.kofi.models.Profile;
 import com.springprj.kofi.responses.ProfileResponse;
 import lombok.AllArgsConstructor;
